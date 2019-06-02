@@ -1,0 +1,27 @@
+{
+  "name": "rep-gallery",
+  "version": "0.0.0",
+  "description": "Small and simple gallery that can delete photos",
+  "main": "gallery.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielventurini/rep-gallery.git"
+  },
+  "keywords": [
+    "react-native",
+    "photo",
+    "image",
+    "gallery",
+    "delete"
+  ],
+  "author": "daniel venturini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danielventurini/rep-gallery/issues"
+  },
+  "homepage": "https://github.com/danielventurini/rep-gallery#readme",
+  "dependencies": {}
+}
