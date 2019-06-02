@@ -1,6 +1,6 @@
-import { ImageDel } from './imageDel'
+import ImageDel from './imageDel'
 import React, { Component } from 'react'
-import { Dimensions, Image, ScrollView, StyleSheet, View } from 'react-native'
+import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
 const SCREEN_WIDTH = Dimensions.get('window').width
@@ -9,31 +9,33 @@ export default class Gallery extends Component {
 
   static defaultProps = {
     photos      : [],
+    padding     : 0,
     horizontal  : false,
-    imageWidth  : SCREEN_WIDTH * 0.9,
-    imageHeight : SCREEN_HEIGHT * 0.25,
+    borderRadius: 10,
   }
 
   constructor(props) {
     super(props);
 
-    this.imageWidth  = props.imageWidth
-    this.imageHeight = props.imageHeight
-    this.horizontal  = props.horizontal
-    this.photos      = props.photos
+    this.photos       = props.photos
+    this.padding      = props.padding
+    this.horizontal   = props.horizontal
+    this.borderRadius = props.borderRadius
   }
 
   renderPhotos = () => {
     return this.photos.map((item) => {
       return (
         <View key={item.id} style={styles.view}>
-          <Image
+          <ImageDel
+            id={item.id}
             source={item.source}
-            style ={styles.image}
+            padding={this.padding}
+            styles={Object.assign({ borderRadius: this.borderRadius }, item.styles)}
           />
         </View>
       )
-    }).reverse()
+    })
   }
 
   render() {
@@ -53,11 +55,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#eff7f9',
     padding: SCREEN_WIDTH * 0.025,
   },
-  image: {
-    width: SCREEN_WIDTH * 0.9,
-    height: SCREEN_HEIGHT * 0.25,
-  },
-  view: {
-    padding: 10,
-  }
 })
