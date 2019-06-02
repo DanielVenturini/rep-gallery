@@ -15,7 +15,7 @@ export default class Gallery extends Component {
   }
 
   constructor(props) {
-    super(props);
+    super(props)
 
     this.photos       = props.photos
     this.padding      = props.padding
@@ -26,7 +26,7 @@ export default class Gallery extends Component {
   changeStyles = (styles) => {
     let newStyles = styles
 
-    if(!styles.borderRadius) {
+    if (!styles.borderRadius) {
       newStyles['borderRadius'] = this.borderRadius
     }
 
@@ -38,10 +38,10 @@ export default class Gallery extends Component {
       return (
         <View key={item.id} style={styles.view}>
           <ImageDel
-            id={item.id}
-            source={item.source}
+            id     ={item.id}
+            source ={item.source}
             padding={this.padding}
-            styles={this.changeStyles(item.styles)}
+            styles ={this.changeStyles(item.styles)}
           />
         </View>
       )
@@ -53,17 +53,17 @@ export default class Gallery extends Component {
       <ScrollView horizontal={this.horizontal} contentContainerStyle={styles.scrollView}>
         {this.renderPhotos()}
       </ScrollView>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   scrollView: {
-    flexGrow: 1,
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexGrow       : 1,
+    justifyContent : 'space-around',
+    alignItems     : 'center',
     backgroundColor: '#eff7f9',
-    padding: SCREEN_WIDTH * 0.025,
+    padding        : SCREEN_WIDTH * 0.025,
   },
 })
 

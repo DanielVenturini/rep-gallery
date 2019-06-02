@@ -20,6 +20,6 @@ export default class ImageDel extends Component {
             style ={this.styles}
           />
       </View>
-    );
+    )
   }
 }
