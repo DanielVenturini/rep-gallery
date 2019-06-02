@@ -1,4 +1,5 @@
 import ImageDel from './imageDel'
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 
@@ -8,7 +9,6 @@ const SCREEN_WIDTH = Dimensions.get('window').width
 export default class Gallery extends Component {
 
   static defaultProps = {
-    photos      : [],
     padding     : 0,
     horizontal  : false,
     borderRadius: 10,
@@ -23,6 +23,16 @@ export default class Gallery extends Component {
     this.borderRadius = props.borderRadius
   }
 
+  changeStyles = (styles) => {
+    let newStyles = styles
+
+    if(!styles.borderRadius) {
+      newStyles['borderRadius'] = this.borderRadius
+    }
+
+    return newStyles
+  }
+
   renderPhotos = () => {
     return this.photos.map((item) => {
       return (
@@ -31,7 +41,7 @@ export default class Gallery extends Component {
             id={item.id}
             source={item.source}
             padding={this.padding}
-            styles={Object.assign({ borderRadius: this.borderRadius }, item.styles)}
+            styles={this.changeStyles(item.styles)}
           />
         </View>
       )
@@ -56,3 +66,7 @@ const styles = StyleSheet.create({
     padding: SCREEN_WIDTH * 0.025,
   },
 })
+
+Gallery.propTypes = {
+  photos: PropTypes.array,
+}

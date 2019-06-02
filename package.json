@@ -23,5 +23,7 @@
     "url": "https://github.com/danielventurini/rep-gallery/issues"
   },
   "homepage": "https://github.com/danielventurini/rep-gallery#readme",
-  "dependencies": {}
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  }
 }
