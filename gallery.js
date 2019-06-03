@@ -9,9 +9,9 @@ const SCREEN_WIDTH = Dimensions.get('window').width
 export default class Gallery extends Component {
 
   static defaultProps = {
-    padding     : 0,
     horizontal  : false,
-    borderRadius: 10,
+    commonImage : {borderRadius: 20, borderWidth: 5, width: SCREEN_WIDTH*0.25, height: SCREEN_HEIGHT*0.15},
+    commonView  : {padding: 5}
   }
 
   constructor(props) {
@@ -19,17 +19,20 @@ export default class Gallery extends Component {
 
     this.selects      = {}
     this.photos       = props.photos
-    this.padding      = props.padding
     this.horizontal   = props.horizontal
-    this.borderRadius = props.borderRadius
+    this.commonView   = props.commonView
+    this.commonImage  = props.commonImage
   }
 
   changeStyles = (styles) => {
     let newStyles = styles
 
-    if (!styles.borderRadius) {
-      newStyles['borderRadius'] = this.borderRadius
-    }
+    // if the styles in the photo doesn't have one property then, add
+    Object.keys(this.commonImage).forEach((key) => {
+      if(styles[key] == undefined) {
+        styles[key] = this.commonImage[key]
+      }
+    })
 
     return newStyles
   }
@@ -41,9 +44,9 @@ export default class Gallery extends Component {
           <ImageDel
             id     ={item.id}
             source ={item.source}
-            padding={this.padding}
             selects={this.selects}
-            styles ={this.changeStyles(item.styles)}
+            stylesV={this.commonView}
+            stylesI={this.changeStyles(item.styles)}
           />
         </View>
       )

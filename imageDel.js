@@ -8,14 +8,15 @@ export default class ImageDel extends Component {
 
     this.timer   = 400
     this.id      = props.id
-    this.styles  = props.styles
     this.source  = props.source
     this.selects = props.selects
-    this.padding = props.padding
+    this.stylesV = props.stylesV
+    this.stylesI = props.stylesI
+    this.previous= this.stylesI.borderColor
   }
 
   changeBorder = (color) => {
-    this.styles['borderColor'] = color
+    this.stylesI['borderColor'] = color
     this.forceUpdate()
   }
 
@@ -32,7 +33,7 @@ export default class ImageDel extends Component {
     if(Object.keys(this.selects).length) {  // has clicked photos
       if(this.selects[this.id]) {           // it's clicked ?
         delete(this.selects[this.id])       // just delete from hash: un-click
-        this.changeBorder('#FFFFFF')        // clean border
+        this.changeBorder(this.previous)    // clean border
       } else {
         this.selects[this.id] = true        // add to selections
         this.changeBorder('#ff0000')
@@ -44,11 +45,11 @@ export default class ImageDel extends Component {
 
   render() {
     return (
-      <View padding={this.padding}>
+      <View style={this.stylesV}>
         <TouchableOpacity onPress={this.click} onLongPress={this.select} activeOpacity={0.6} >
           <Image
             source={this.source}
-            style ={this.styles}
+            style ={this.stylesI}
           />
         </TouchableOpacity>
       </View>
