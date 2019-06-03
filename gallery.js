@@ -17,6 +17,7 @@ export default class Gallery extends Component {
   constructor(props) {
     super(props)
 
+    this.selects      = {}
     this.photos       = props.photos
     this.padding      = props.padding
     this.horizontal   = props.horizontal
@@ -41,6 +42,7 @@ export default class Gallery extends Component {
             id     ={item.id}
             source ={item.source}
             padding={this.padding}
+            selects={this.selects}
             styles ={this.changeStyles(item.styles)}
           />
         </View>
