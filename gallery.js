@@ -10,7 +10,7 @@ export default class Gallery extends Component {
 
   static defaultProps = {
     horizontal  : false,
-    commonImage : {borderRadius: 20, borderWidth: 5, width: SCREEN_WIDTH*0.25, height: SCREEN_HEIGHT*0.15},
+    commonImage : {borderRadius: 20, borderWidth: 5, width: SCREEN_WIDTH*0.95, height: SCREEN_HEIGHT*0.25},
     commonView  : {padding: 5}
   }
 
