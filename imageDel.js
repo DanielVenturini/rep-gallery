@@ -20,23 +20,30 @@ export default class ImageDel extends Component {
     this.forceUpdate()
   }
 
-  select = () => {
-    if(this.selects[this.id]) {
-      return
-    }
+  deselect = () => {
+    delete(this.selects[this.id])       // just delete from hash: un-click
+    this.changeBorder(this.previous)    // clean border
+  }
 
+  select = () => {
     this.selects[this.id] = true
     this.changeBorder('#ff0000')
+  }
+
+  longClick = () => {
+    if(this.selects[this.id]) {
+      this.deselect()
+    } else {
+      this.select()
+    }
   }
 
   click = () => {
     if(Object.keys(this.selects).length) {  // has clicked photos
       if(this.selects[this.id]) {           // it's clicked ?
-        delete(this.selects[this.id])       // just delete from hash: un-click
-        this.changeBorder(this.previous)    // clean border
+        this.deselect()
       } else {
-        this.selects[this.id] = true        // add to selections
-        this.changeBorder('#ff0000')
+        this.select()
       }
     } else {
       // this.viewPhoto()  // comming soon
@@ -46,7 +53,7 @@ export default class ImageDel extends Component {
   render() {
     return (
       <View style={this.stylesV}>
-        <TouchableOpacity onPress={this.click} onLongPress={this.select} activeOpacity={0.6} >
+        <TouchableOpacity onPress={this.click} onLongPress={this.longClick} activeOpacity={0.6} >
           <Image
             source={this.source}
             style ={this.stylesI}
