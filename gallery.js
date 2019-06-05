@@ -1,6 +1,7 @@
 import ImageDel from './imageDel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
@@ -65,9 +66,10 @@ export default class Gallery extends Component {
 const styles = StyleSheet.create({
   scrollView: {
     flexGrow       : 1,
-    justifyContent : 'space-around',
+    flexDirection  : 'column',
     alignItems     : 'center',
-    backgroundColor: '#eff7f9',
+    justifyContent : 'space-around',
+    width          : SCREEN_WIDTH*0.9,
     padding        : SCREEN_WIDTH * 0.025,
   },
 })
