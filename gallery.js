@@ -2,7 +2,7 @@ import ImageDel from './imageDel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
+import { Alert, Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
 const SCREEN_WIDTH = Dimensions.get('window').width
@@ -23,6 +23,7 @@ export default class Gallery extends Component {
     this.horizontal   = props.horizontal
     this.commonView   = props.commonView
     this.commonImage  = props.commonImage
+    this.iconSize     = SCREEN_HEIGHT*0.06
   }
 
   changeStyles = (styles) => {
@@ -54,11 +55,30 @@ export default class Gallery extends Component {
     })
   }
 
+  // coming soon
+  exclude = () => {
+    // this.forceUpdate()
+  }
+
+  confirmDelete = () => {
+    Alert.alert(
+      'Are you sure?',
+      '',
+      [
+        { text: 'CANCEL', style: 'cancel' },
+        { text: 'OK', onPress: this.exclude }
+      ]
+    )
+  }
+
   render() {
     return (
-      <ScrollView horizontal={this.horizontal} contentContainerStyle={styles.scrollView}>
-        {this.renderPhotos()}
-      </ScrollView>
+      <View>
+        {/*<Icon name='users' size={this.iconSize} color='#000' onPress={this.confirmDelete} />*/}
+        <ScrollView horizontal={this.horizontal} contentContainerStyle={styles.scrollView}>
+          {this.renderPhotos()}
+        </ScrollView>
+      </View>
     )
   }
 }
@@ -70,7 +90,8 @@ const styles = StyleSheet.create({
     alignItems     : 'center',
     justifyContent : 'space-around',
     width          : SCREEN_WIDTH*0.9,
-    padding        : SCREEN_WIDTH * 0.025,
+    padding        : SCREEN_WIDTH*0.025,
+    paddingTop     : SCREEN_HEIGHT*0.06,
   },
 })
 
