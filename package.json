@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/danielventurini/rep-gallery#readme",
   "dependencies": {
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-native-event-listeners": "^1.0.3"
   }
 }

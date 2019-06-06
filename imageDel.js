@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { Image, TouchableOpacity, View } from 'react-native';
+import React, { Component } from 'react'
+import { EventRegister } from 'react-native-event-listeners'
+import { Image, TouchableOpacity, View } from 'react-native'
 
 export default class ImageDel extends Component {
 
@@ -24,7 +25,19 @@ export default class ImageDel extends Component {
     this.changeBorder(this.previous)    // clean border
   }
 
+  // if this image has been the first selected
+  // show the trash
+  showTrash = () => {
+    if(Object.keys(this.selects).length) {
+      return
+    }
+
+    EventRegister.emit('trash')
+  }
+
   select = () => {
+    this.showTrash()
+
     this.selects[this.id] = true
     this.changeBorder('#ff0000')
   }
@@ -60,5 +73,9 @@ export default class ImageDel extends Component {
         </TouchableOpacity>
       </View>
     )
+  }
+
+  componentWillUnmount() {
+    this.deselect()
   }
 }

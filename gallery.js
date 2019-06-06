@@ -2,6 +2,7 @@ import ImageDel from './imageDel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { EventRegister } from 'react-native-event-listeners'
 import { Alert, Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
@@ -19,11 +20,23 @@ export default class Gallery extends Component {
     super(props)
 
     this.selects      = {}
+    this.showTrash    = false
     this.photos       = props.photos
     this.horizontal   = props.horizontal
     this.commonView   = props.commonView
     this.commonImage  = props.commonImage
     this.iconSize     = SCREEN_HEIGHT*0.06
+  }
+
+  componentWillMount() {
+    this.listener = EventRegister.addEventListener('trash', this.trash)
+  }
+
+  // show and hide trash
+  trash = () => {
+    this.showTrash = !this.showTrash
+
+    this.forceUpdate()
   }
 
   // don't let image overflow the width
@@ -81,7 +94,8 @@ export default class Gallery extends Component {
       this.excludePhoto(id)
     })
 
-    this.forceUpdate()
+    // hide trash and force update
+    this.trash()
   }
 
   confirmDelete = () => {
@@ -98,12 +112,16 @@ export default class Gallery extends Component {
   render() {
     return (
       <View>
-        <Icon name='trash-o' size={this.iconSize} color='#000' onPress={this.confirmDelete} />
+        {this.showTrash ? <Icon name='trash-o' size={this.iconSize} color='#000' onPress={this.confirmDelete} /> : null }
         <ScrollView horizontal={this.horizontal} contentContainerStyle={styles.scrollView}>
           {this.renderPhotos()}
         </ScrollView>
       </View>
     )
+  }
+
+  componentWillUnmount() {
+    EventRegister.removeEventListener(this.listener)
   }
 }
 
