@@ -20,9 +20,13 @@ export default class ImageDel extends Component {
     this.forceUpdate()
   }
 
-  deselect = () => {
+  deselect = (unmount) => {
     delete(this.selects[this.id])       // just delete from hash: un-click
     this.changeBorder(this.previous)    // clean border
+
+    // if it's been unmounted, don't raise a event
+    if(!unmount)
+      this.showTrash()
   }
 
   // if this image has been the first selected
@@ -76,6 +80,6 @@ export default class ImageDel extends Component {
   }
 
   componentWillUnmount() {
-    this.deselect()
+    this.deselect(true)
   }
 }

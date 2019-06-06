@@ -109,10 +109,22 @@ export default class Gallery extends Component {
     )
   }
 
+  getViewTrash = () => {
+    if(!this.showTrash) {
+      return null
+    }
+
+    return (
+      <View style={{paddingLeft: SCREEN_HEIGHT*0.1}} >
+        <Icon name='trash-o' size={this.iconSize} color='#000' onPress={this.confirmDelete} />
+      </View>
+    )
+  }
+
   render() {
     return (
       <View>
-        {this.showTrash ? <Icon name='trash-o' size={this.iconSize} color='#000' onPress={this.confirmDelete} /> : null }
+        {this.getViewTrash()}
         <ScrollView horizontal={this.horizontal} contentContainerStyle={styles.scrollView}>
           {this.renderPhotos()}
         </ScrollView>
