@@ -69,7 +69,7 @@ export default class ImageDel extends Component {
   render() {
     return (
       <View style={this.stylesV}>
-        <TouchableOpacity onPress={this.click} onLongPress={this.longClick} activeOpacity={0.6} >
+        <TouchableOpacity onPress={this.click} onLongPress={this.longClick} activeOpacity={0.9} >
           <Image
             source={this.source}
             style ={this.stylesI}
