@@ -87,7 +87,7 @@ export default class Gallery extends Component {
   render() {
     return (
       <View>
-        <Icon name='users' size={this.iconSize} color='#000' onPress={this.confirmDelete} />
+        <Icon name='trash-o' size={this.iconSize} color='#000' onPress={this.confirmDelete} />
         <ScrollView horizontal={this.horizontal} contentContainerStyle={styles.scrollView}>
           {this.renderPhotos()}
         </ScrollView>
