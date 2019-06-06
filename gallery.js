@@ -55,9 +55,22 @@ export default class Gallery extends Component {
     })
   }
 
-  // coming soon
+  excludePhoto = (id) => {
+    this.photos.forEach((photo, index) => {
+      if(photo.id == id) {
+        this.photos.splice(index, 1)
+        return
+      }
+    })
+  }
+
   exclude = () => {
-    // this.forceUpdate()
+    var count = 0
+    Object.keys(this.selects).forEach( (id) => {
+      this.excludePhoto(id)
+    })
+
+    this.forceUpdate()
   }
 
   confirmDelete = () => {
@@ -74,7 +87,7 @@ export default class Gallery extends Component {
   render() {
     return (
       <View>
-        {/*<Icon name='users' size={this.iconSize} color='#000' onPress={this.confirmDelete} />*/}
+        <Icon name='users' size={this.iconSize} color='#000' onPress={this.confirmDelete} />
         <ScrollView horizontal={this.horizontal} contentContainerStyle={styles.scrollView}>
           {this.renderPhotos()}
         </ScrollView>
