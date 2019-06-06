@@ -26,6 +26,16 @@ export default class Gallery extends Component {
     this.iconSize     = SCREEN_HEIGHT*0.06
   }
 
+  // don't let image overflow the width
+  verifyWidth = (styles) => {
+    if(!styles.width) {
+      return
+    }
+
+    styles.width = styles.width > SCREEN_WIDTH ? SCREEN_WIDTH : styles.width
+  }
+
+  // apply all commons styles
   changeStyles = (styles) => {
     let newStyles = styles
 
@@ -36,6 +46,7 @@ export default class Gallery extends Component {
       }
     })
 
+    this.verifyWidth(styles)
     return newStyles
   }
 
@@ -102,9 +113,7 @@ const styles = StyleSheet.create({
     flexDirection  : 'column',
     alignItems     : 'center',
     justifyContent : 'space-around',
-    width          : SCREEN_WIDTH*0.9,
-    padding        : SCREEN_WIDTH*0.025,
-    paddingTop     : SCREEN_HEIGHT*0.06,
+    paddingBottom  : SCREEN_HEIGHT*0.06,
   },
 })
 

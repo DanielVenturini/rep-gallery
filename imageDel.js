@@ -6,7 +6,6 @@ export default class ImageDel extends Component {
   constructor(props) {
     super(props)
 
-    this.timer   = 400
     this.id      = props.id
     this.source  = props.source
     this.selects = props.selects
