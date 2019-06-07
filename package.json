@@ -1,6 +1,6 @@
 {
   "name": "rep-gallery",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Small and simple gallery that can delete photos",
   "main": "gallery.js",
   "scripts": {
