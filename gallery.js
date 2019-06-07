@@ -12,7 +12,7 @@ export default class Gallery extends Component {
 
   static defaultProps = {
     horizontal  : false,
-    commonImage : {borderRadius: 20, borderWidth: 5, width: SCREEN_WIDTH*0.95, height: SCREEN_HEIGHT*0.5},
+    commonImage : {borderColor: '#8c8c8c', borderRadius: 20, borderWidth: 5, width: SCREEN_WIDTH*0.95, height: SCREEN_HEIGHT*0.5},
     commonView  : {padding: 5}
   }
 
@@ -50,17 +50,18 @@ export default class Gallery extends Component {
 
   // apply all commons styles
   changeStyles = (styles) => {
-    let newStyles = styles
-
     // if the styles in the photo doesn't have one property then, add
     Object.keys(this.commonImage).forEach((key) => {
+      // when image doesn't have the prop image
+      styles = styles ? styles : this.commonImage
+
       if(styles[key] == undefined) {
         styles[key] = this.commonImage[key]
       }
     })
 
     this.verifyWidth(styles)
-    return newStyles
+    return styles
   }
 
   renderPhotos = () => {
