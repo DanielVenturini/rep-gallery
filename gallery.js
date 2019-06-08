@@ -12,8 +12,9 @@ export default class Gallery extends Component {
 
   static defaultProps = {
     horizontal  : false,
-    commonImage : {borderColor: '#8c8c8c', borderRadius: 20, borderWidth: 5, width: SCREEN_WIDTH*0.95, height: SCREEN_HEIGHT*0.5},
-    commonView  : {padding: 5}
+    callback    : () => {},
+    commonView  : {padding: 5},
+    commonImage : {borderColor: '#8c8c8c', borderRadius: 20, borderWidth: 3, width: SCREEN_WIDTH*0.95, height: SCREEN_HEIGHT*0.5}
   }
 
   constructor(props) {
@@ -22,6 +23,7 @@ export default class Gallery extends Component {
     this.selects      = {}
     this.showTrash    = false
     this.photos       = props.photos
+    this.callback     = props.callback
     this.horizontal   = props.horizontal
     this.commonView   = props.commonView
     this.commonImage  = props.commonImage
@@ -84,19 +86,20 @@ export default class Gallery extends Component {
     this.photos.forEach((photo, index) => {
       if(photo.id == id) {
         this.photos.splice(index, 1)
-        return
+        return photo
       }
     })
   }
 
   exclude = () => {
-    var count = 0
+    var deleteds = []
     Object.keys(this.selects).forEach( (id) => {
-      this.excludePhoto(id)
+      deleteds.push(this.excludePhoto(id))
     })
 
     // hide trash and force update
     this.trash()
+    this.callback(deleteds)
   }
 
   confirmDelete = () => {
