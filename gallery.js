@@ -83,12 +83,11 @@ export default class Gallery extends Component {
   }
 
   excludePhoto = (id) => {
-    this.photos.forEach((photo, index) => {
-      if(photo.id == id) {
-        this.photos.splice(index, 1)
-        return photo
+    for(var index = 0; index < this.photos.length-1; index ++) {
+      if(this.photos[index].id == id) {
+        return this.photos.splice(index, 1)[0]
       }
-    })
+    }
   }
 
   exclude = () => {
