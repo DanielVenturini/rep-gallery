@@ -14,7 +14,8 @@ export default class Gallery extends Component {
     horizontal  : false,
     callback    : () => {},
     commonView  : {padding: 5},
-    commonImage : {borderColor: '#8c8c8c', borderRadius: 20, borderWidth: 3, width: SCREEN_WIDTH*0.95, height: SCREEN_HEIGHT*0.5}
+    commonImage : {borderColor: '#8c8c8c', borderRadius: 20, borderWidth: 3, width: SCREEN_WIDTH*0.95, height: SCREEN_HEIGHT*0.5},
+    backgroundColor: 'white',
   }
 
   constructor(props) {
@@ -28,6 +29,7 @@ export default class Gallery extends Component {
     this.commonView   = props.commonView
     this.commonImage  = props.commonImage
     this.iconSize     = SCREEN_HEIGHT*0.06
+    this.backgroundColor = props.backgroundColor
   }
 
   componentWillMount() {
@@ -83,7 +85,7 @@ export default class Gallery extends Component {
   }
 
   excludePhoto = (id) => {
-    for(var index = 0; index < this.photos.length-1; index ++) {
+    for(var index = 0; index < this.photos.length; index ++) {
       if(this.photos[index].id == id) {
         return this.photos.splice(index, 1)[0]
       }
@@ -126,7 +128,7 @@ export default class Gallery extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{backgroundColor: this.backgroundColor}}>
         {this.getViewTrash()}
         <ScrollView horizontal={this.horizontal} contentContainerStyle={styles.scrollView}>
           {this.renderPhotos()}
