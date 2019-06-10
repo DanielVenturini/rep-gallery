@@ -62,7 +62,7 @@ class YourComponent extends Component {
 | `photos` | Yes | Array with the objects of photos. This array will be update when any image was deleted. |
 | `callback` | No | A function that will be called after the photos objects has been removed. The `delPhotos` is array that contains all removeds photos objects. |
 | `commonImage` | No | The props that will be apply to each image. This props doesn't overide the props that is passed in `styles` of photos. |
-| `backgroundColor` | No | Is the `rgb` color that is apply in the background. |
+| `backgroundColor` | No | It's the `rgb` color that is apply in the background. |
 | `horizontal` | No | Change the `ScroolView` to horizontal scroll. |
 
 ## Photos object
@@ -70,6 +70,6 @@ Each object has the follow props:
 
 | Key             | Required   | Description |
 |-----------------|--------------------------------------------------------------------------------------------|----|
-| `id` | Yes | Unique `id` that identify the object. Is require by the `JavaScript` also. |
+| `id` | Yes | Unique `id` that identify the object. It's require by the `JavaScript` also. |
 | `source` | Yes | The `uri` to load image. |
-| `styles` | No | The styles of image. Isn't required, but the `commonImage` will be apply if any key doesn't be in `styles` key. |
+| `styles` | No | The styles of image. It isn't required, but the `commonImage` will be apply if any key doesn't be in `styles` key. |
